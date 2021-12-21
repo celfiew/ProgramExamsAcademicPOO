@@ -1,0 +1,50 @@
+@startuml
+abstract class Examen {
+- String: titulo:
+- String: enunciado:
+- int: notaEscrita:
+- Alumne: alumne:
++ <<Create>>: Examen(String,String,int,Alumne):
++ int: getNotaEscrita():
++ boolean: estaAprobado():
++ String: datosAlumne():
++ {abstract}void: rendir():
+}
+interface Comparable {
+~ int compareTo(Object)
+}
+class Final {
+- int: notaOral:
+- String: descripcionOral:
++ <<Create>>: Final(String,String,int,Alumne,int,String):
++ boolean: estaAprobado():
++ void: rendir():
++ int: compareTo(Object):
+- double: calcularPromedio():
+}
+class Principal {
++ void: main(String[]): {static}
+}
+class Parcial {
+- int: nroUnidad:
+- int: intentos:
++ <<Create>>: Parcial(String,String,int,Alumne,int):
++ int: getNroUnidad():
++ void: rendir():
+}
+class Alumne {
+- String: nombre:
+- String: apellido:
+- int: legajo:
++ <<Create>>: Alumne(String,String,int):
++ void: estudiar():
++ String: toString():
+- void: entrarEnPanico():
+- void: calmarse():
+}
+
+
+Comparable <|.. Final
+Examen <|-- Final
+Examen <|-- Parcial
+@enduml
